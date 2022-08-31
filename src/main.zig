@@ -42,7 +42,20 @@ const fontset: [80]u8 = .{
     0xF0, 0x80, 0xF0, 0x80, 0x80, // F
 };
 
-const Chip8 = struct { pc: u16 = 0x200, i: u16 = 0, registers: [16]u8 = .{0} ** 16, sp: u16 = 0, stack: [16]u16 = .{0} ** 16, delay_timer: u8 = 60, sound_timer: u8 = 60, rand: std.rand.Xoshiro256 = std.rand.DefaultPrng.init(0), memory: [4096]u8 = .{0} ** 4096, keys: [16]u8 = .{0} ** 16, gpu: GPU = GPU{} };
+const Chip8 = struct {
+    //
+    pc: u16 = 0x200,
+    i: u16 = 0,
+    registers: [16]u8 = .{0} ** 16,
+    sp: u16 = 0,
+    stack: [16]u16 = .{0} ** 16,
+    delay_timer: u8 = 60,
+    sound_timer: u8 = 60,
+    rand: std.rand.Xoshiro256 = std.rand.DefaultPrng.init(0),
+    memory: [4096]u8 = .{0} ** 4096,
+    keys: [16]u8 = .{0} ** 16,
+    gpu: GPU = GPU{},
+};
 const GPU = struct {
     memory: [64 * 32]u8 = .{0} ** (64 * 32),
     fn clear_display(self: *GPU) void {
